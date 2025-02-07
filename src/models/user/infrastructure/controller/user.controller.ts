@@ -15,5 +15,4 @@ export class UserController{
     async login(@Body() loginUserDto: LoginUserDto){
         return await this.userService.login(loginUserDto)
     }
-    
 }

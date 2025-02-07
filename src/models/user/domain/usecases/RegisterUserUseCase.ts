@@ -1,11 +1,11 @@
 import { Inject } from "@nestjs/common";
 import { User } from "../entity/User";
-import { IUserRespository } from "../respository/IUserRespository";
+import { UserRespository } from "../respository/UserRespository";
 import * as bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 
 export class RegisterUserUseCase{
-    constructor(@Inject("UserRespository") private readonly db:IUserRespository){}
+    constructor(@Inject("UserRepository") private readonly db:UserRespository){}
     async execute(username: string, email: string, password: string):Promise<User | string>{
         
         const verifyEmail = this.db.findByEmail(email)
