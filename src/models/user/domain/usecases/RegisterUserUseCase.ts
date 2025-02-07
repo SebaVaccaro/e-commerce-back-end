@@ -8,9 +8,9 @@ export class RegisterUserUseCase{
     constructor(@Inject("UserRepository") private readonly db:UserRespository){}
     async execute(username: string, email: string, password: string):Promise<User | string>{
         
-        const verifyEmail = this.db.findByEmail(email)
+        const verifyEmail = await this.db.findByEmail(email)
         
-        if(!verifyEmail)return"email exist"
+        if(verifyEmail)return"email exist"
         const passwordHashed = await bcrypt.hash(password, 10)
         
         const id = uuidv4()

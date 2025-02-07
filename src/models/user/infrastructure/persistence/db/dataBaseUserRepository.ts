@@ -24,7 +24,7 @@ export class DataBaseUserRepository implements UserRespository {
     }
 
     async findByEmail(email: string): Promise<User | null> {
-        const res = await this.userModel.findOne({email})
+        const res = await this.userModel.findOne({email}).exec()
         return res
     }
 
